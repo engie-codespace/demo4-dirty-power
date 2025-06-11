@@ -30,11 +30,9 @@ const EnergyCard: React.FC<EnergyCardProps> = ({ energy }) => {
           <h3 className="text-white text-xl font-bold">{energy.name}</h3>
         </div>
       </div>
-      
       <div className="p-6">
         <h3 className="text-xl font-bold mb-2">{energy.name}</h3>
         <p className="text-gray-600 mb-4">{energy.description}</p>
-        
         <div className="mb-4">
           <div className="flex justify-between mb-1">
             <span className="font-medium">Price per kWh:</span>
@@ -49,7 +47,6 @@ const EnergyCard: React.FC<EnergyCardProps> = ({ energy }) => {
             <span className="font-bold">{energy.co2PerKwh} g/kWh</span>
           </div>
         </div>
-        
         <div className="mb-4">
           <h4 className="font-semibold text-green-600 mb-2">Advantages</h4>
           <ul className="list-disc list-inside space-y-1">
@@ -58,7 +55,6 @@ const EnergyCard: React.FC<EnergyCardProps> = ({ energy }) => {
             ))}
           </ul>
         </div>
-        
         <div>
           <h4 className="font-semibold text-red-600 mb-2">Disadvantages</h4>
           <ul className="list-disc list-inside space-y-1">
@@ -67,7 +63,6 @@ const EnergyCard: React.FC<EnergyCardProps> = ({ energy }) => {
             ))}
           </ul>
         </div>
-        
         <button className="mt-6 w-full py-2 px-4 bg-primary text-white rounded-md hover:bg-secondary transition-colors">
           Learn more
         </button>

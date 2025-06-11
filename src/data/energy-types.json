@@ -1,43 +1,44 @@
 [
   {
     "id": 1,
-    "name": "Natural Gas",
-    "description": "Energy derived from natural gas, a fossil fuel used in gas power plants.",
+    "name": "Biomethane",
+    "description": "Energy derived from biomethane, a renewable gas produced from organic matter, used in power plants.",
     "pricePerKwh": 0.12,
     "pricePerMonth": 20,
-    "type": "fossil",
+    "type": "renewable",
     "advantages": [
       "Constant availability",
       "Stable cost",
-      "Flexible energy production"
+      "Flexible energy production",
+      "Lower carbon footprint than fossil gas"
     ],
     "disadvantages": [
-      "CO2 emissions",
-      "Non-renewable source",
+      "Still emits some CO2",
+      "Requires organic feedstock",
       "Moderate environmental impact"
     ],
-    "imageUrl": "/images/natural-gas.jpg",
-    "co2PerKwh": 490
+    "imageUrl": "/images/biomethane.jpg",
+    "co2PerKwh": 100
   },
   {
     "id": 2,
-    "name": "Coal",
-    "description": "Energy produced by burning coal in thermal power plants.",
-    "pricePerKwh": 0.10,
-    "pricePerMonth": 18,
-    "type": "fossil",
+    "name": "Biomass",
+    "description": "Energy produced from organic materials such as wood, agricultural crops, or waste, providing a renewable alternative to coal.",
+    "pricePerKwh": 0.13,
+    "pricePerMonth": 22,
+    "type": "renewable",
     "advantages": [
-      "Low production cost",
-      "High availability",
-      "Reliability"
+      "Renewable resource",
+      "Reduces waste",
+      "Can be carbon neutral"
     ],
     "disadvantages": [
-      "High CO2 emissions",
-      "Significant air pollution",
-      "Major environmental impact"
+      "Land use requirements",
+      "Air quality concerns",
+      "Supply chain complexity"
     ],
-    "imageUrl": "/images/coal.jpg",
-    "co2PerKwh": 820
+    "imageUrl": "/images/biomass.jpg",
+    "co2PerKwh": 50
   },
   {
     "id": 3,
