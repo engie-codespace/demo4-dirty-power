@@ -165,6 +165,33 @@ const HomePage: React.FC = () => {
         </div>
       </section>
       
+      {/* Energy Supply Section */}
+      <section className="py-16 bg-white/80">
+        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-4">
+          {/* Left: Text */}
+          <div>
+            <h2 className="text-3xl font-bold text-primary mb-4 flex items-center">
+              <svg className="h-8 w-8 text-pink-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
+              Innovative Energy Supply
+            </h2>
+            <p className="text-lg text-gray-700 mb-6">
+              Experience the future of energy with our innovative supply services. We deliver clean, reliable, and affordable power from renewable sources, ensuring sustainability and efficiency for every customer.
+            </p>
+            <ul className="space-y-3">
+              <li className="flex items-center"><svg className="h-6 w-6 text-yellow-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.95l-.71.71M21 12h-1M4 12H3m16.66 5.66l-.71-.71M4.05 4.05l-.71-.71" /></svg> Solar Power</li>
+              <li className="flex items-center"><svg className="h-6 w-6 text-blue-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12a9 9 0 0118 0c0 4.97-4.03 9-9 9s-9-4.03-9-9z" /></svg> Wind Energy</li>
+              <li className="flex items-center"><svg className="h-6 w-6 text-cyan-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v18m9-9H3" /></svg> Hydroelectric Power</li>
+            </ul>
+          </div>
+          {/* Right: Images/Icons */}
+          <div className="flex flex-col items-center space-y-6">
+            <img src="/images/solar-icon.png" alt="Solar" className="h-20 w-20 rounded-full shadow-lg bg-yellow-100 p-3" />
+            <img src="/images/wind-icon.png" alt="Wind" className="h-20 w-20 rounded-full shadow-lg bg-blue-100 p-3" />
+            <img src="/images/hydro-icon.png" alt="Hydro" className="h-20 w-20 rounded-full shadow-lg bg-cyan-100 p-3" />
+          </div>
+        </div>
+      </section>
+      
       {/* Call to Action */}
       <section className="py-16 bg-secondary text-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
