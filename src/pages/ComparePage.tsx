@@ -1,5 +1,18 @@
 import React, { useEffect, useState } from 'react';
+import { Line } from 'react-chartjs-2';
+import {
+  Chart as ChartJS,
+  CategoryScale,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Title,
+  Tooltip,
+  Legend
+} from 'chart.js';
 import energyTypesData from '../data/energy-types.json';
+
+ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
 interface EnergyType {
   id: number;
@@ -58,6 +71,33 @@ const ComparePage: React.FC = () => {
   const selectedEnergies = energyTypes.filter(energy => 
     selectedEnergyIds.includes(energy.id)
   );
+
+  // Chart data for dynamic cost vs. consumption
+  const chartData = {
+    labels: Array.from({ length: 10 }, (_, i) => 1000 + i * 1000),
+    datasets: selectedEnergies.map((energy, idx) => ({
+      label: energy.name,
+      data: Array.from({ length: 10 }, (_, i) => {
+        const consumption = 1000 + i * 1000;
+        return (consumption * energy.pricePerKwh) + (energy.pricePerMonth * 12);
+      }),
+      borderColor: ['#4F46E5', '#16A34A', '#F59E42'][idx % 3],
+      backgroundColor: 'rgba(0,0,0,0)',
+      tension: 0.3,
+    })),
+  };
+
+  const chartOptions = {
+    responsive: true,
+    plugins: {
+      legend: { position: 'top' as const },
+      title: { display: true, text: 'Annual Cost vs. Consumption' },
+    },
+    scales: {
+      x: { title: { display: true, text: 'Annual Consumption (kWh)' } },
+      y: { title: { display: true, text: 'Annual Cost (£)' } },
+    },
+  };
 
   return (
     <div className="bg-light min-h-screen">
@@ -231,6 +271,13 @@ const ComparePage: React.FC = () => {
                 </p>
               </div>
             </div>
+          </div>
+        )}
+        
+        {selectedEnergies.length > 0 && (
+          <div className="my-12 bg-white p-6 rounded-lg shadow-md">
+            <h3 className="text-xl font-semibold mb-4 text-center">Visualize Annual Cost by Consumption</h3>
+            <Line data={chartData} options={chartOptions} />
           </div>
         )}
         
