@@ -6,7 +6,7 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: "#0F4C81",
+        primary: "#ec4899", // Tailwind's pink-500
         secondary: "#3A7CA5",
         accent: "#F39C12",
         light: "#F5F5F5",

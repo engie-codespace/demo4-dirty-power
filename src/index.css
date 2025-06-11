@@ -9,7 +9,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: pink;
+  background-color: #fce7f3; /* Tailwind's pink-100 for a soft background */
 }
 
 code {
