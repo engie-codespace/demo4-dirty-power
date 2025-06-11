@@ -72,32 +72,92 @@ const HomePage: React.FC = () => {
         </div>
       </section>
       
-      {/* Key Figures Section */}
-      <section className="py-16 bg-primary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold">Our Key Figures</h2>
-            <p className="mt-4 text-lg text-gray-200 max-w-3xl mx-auto">
-              DirtyPower in numbers
-            </p>
+      {/* Energy Consultation Section */}
+      <section className="py-16 bg-pink-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+            {/* Step-by-step infographic */}
+            <div className="flex flex-col space-y-8">
+              <h2 className="text-3xl font-bold text-primary mb-4 flex items-center">
+                <svg className="h-8 w-8 text-pink-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2a4 4 0 014-4h3" /></svg>
+                Energy Consultation
+              </h2>
+              <div className="space-y-6">
+                <div className="flex items-center">
+                  <span className="flex items-center justify-center h-10 w-10 rounded-full bg-yellow-300 text-white font-bold mr-4">1</span>
+                  <span className="text-lg text-gray-700">Free energy audit to assess your current usage</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="flex items-center justify-center h-10 w-10 rounded-full bg-pink-400 text-white font-bold mr-4">2</span>
+                  <span className="text-lg text-gray-700">Personalized recommendations for savings and efficiency</span>
+                </div>
+                <div className="flex items-center">
+                  <span className="flex items-center justify-center h-10 w-10 rounded-full bg-blue-400 text-white font-bold mr-4">3</span>
+                  <span className="text-lg text-gray-700">Implementation support and ongoing monitoring</span>
+                </div>
+              </div>
+            </div>
+            {/* Description */}
+            <div className="flex flex-col justify-center">
+              <p className="text-lg text-gray-700 mb-4">
+                Our expert consultants help you optimize your energy consumption, reduce costs, and increase efficiency. We guide you every step of the way, ensuring you benefit from the latest innovations in sustainable energy.
+              </p>
+              <img src="/images/consultation-infographic.png" alt="Consultation Process" className="rounded-lg shadow-md border-2 border-pink-200 mt-4" />
+            </div>
           </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">25+</div>
-              <div className="text-xl">Years of experience</div>
+        </div>
+      </section>
+
+      {/* Customer Support Section */}
+      <section className="py-16 bg-white/80">
+        <div className="max-w-6xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 gap-10 items-center">
+          {/* Text and CTA */}
+          <div className="flex flex-col justify-center space-y-6">
+            <h2 className="text-3xl font-bold text-primary mb-4 flex items-center">
+              <svg className="h-8 w-8 text-pink-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M18 10c0-3.866-3.582-7-8-7S2 6.134 2 10c0 2.21 1.79 4 4 4h1v2a2 2 0 002 2h2a2 2 0 002-2v-2h1c2.21 0 4-1.79 4-4z" /></svg>
+              24/7 Customer Support
+            </h2>
+            <p className="text-lg text-gray-700">
+              Our dedicated team is available around the clock to provide personalized assistance. Whether you have questions, need help with your account, or want to explore new services, we're here for you—anytime, anywhere.
+            </p>
+            <div className="flex items-center space-x-4 mt-4">
+              <button className="bg-pink-500 hover:bg-pink-600 text-white font-bold py-2 px-6 rounded-full shadow transition">Contact Us</button>
+              <span className="inline-flex items-center justify-center h-12 w-12 rounded-full bg-pink-100 shadow-md cursor-pointer">
+                <svg className="h-7 w-7 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8a2 2 0 012-2h2m2-4h4a2 2 0 012 2v4H7V6a2 2 0 012-2z" /></svg>
+              </span>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">500k+</div>
-              <div className="text-xl">Satisfied customers</div>
+          </div>
+          {/* Image */}
+          <div className="flex justify-center">
+            <img src="/images/customer-support.png" alt="Customer Support" className="rounded-lg shadow-md border-2 border-pink-200 max-h-64" />
+          </div>
+        </div>
+      </section>
+
+      {/* Key Figures Section */}
+      <section className="py-16 bg-pink-50">
+        <div className="max-w-6xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-primary text-center mb-10">Key Figures</h2>
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-8 text-center">
+            <div className="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+              <svg className="h-10 w-10 text-pink-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 10c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" /></svg>
+              <span className="text-4xl font-extrabold text-primary">25+</span>
+              <span className="text-gray-700 mt-2">Years of Experience</span>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">98%</div>
-              <div className="text-xl">Satisfaction rate</div>
+            <div className="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+              <svg className="h-10 w-10 text-yellow-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 20h5v-2a3 3 0 00-3-3h-4a3 3 0 00-3 3v2h5z" /></svg>
+              <span className="text-4xl font-extrabold text-primary">500k+</span>
+              <span className="text-gray-700 mt-2">Satisfied Customers</span>
             </div>
-            <div className="text-center">
-              <div className="text-4xl font-bold mb-2">24/7</div>
-              <div className="text-xl">Customer service</div>
+            <div className="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+              <svg className="h-10 w-10 text-blue-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4-1.79-4-4-4zm0 10c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z" /></svg>
+              <span className="text-4xl font-extrabold text-primary">98%</span>
+              <span className="text-gray-700 mt-2">Satisfaction Rate</span>
+            </div>
+            <div className="bg-white rounded-lg shadow p-6 flex flex-col items-center">
+              <svg className="h-10 w-10 text-cyan-400 mb-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 17v-2a4 4 0 014-4h3" /></svg>
+              <span className="text-4xl font-extrabold text-primary">100+</span>
+              <span className="text-gray-700 mt-2">Community Projects</span>
             </div>
           </div>
         </div>
