@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/demo4-dirty-power/static/css/main.477b6799.css",
-    "main.js": "/demo4-dirty-power/static/js/main.f547e220.js",
+    "main.css": "/demo4-dirty-power/static/css/main.e7a407ac.css",
+    "main.js": "/demo4-dirty-power/static/js/main.043b09cc.js",
     "static/js/453.14b02d4a.chunk.js": "/demo4-dirty-power/static/js/453.14b02d4a.chunk.js",
     "index.html": "/demo4-dirty-power/index.html",
-    "main.477b6799.css.map": "/demo4-dirty-power/static/css/main.477b6799.css.map",
-    "main.f547e220.js.map": "/demo4-dirty-power/static/js/main.f547e220.js.map",
+    "main.e7a407ac.css.map": "/demo4-dirty-power/static/css/main.e7a407ac.css.map",
+    "main.043b09cc.js.map": "/demo4-dirty-power/static/js/main.043b09cc.js.map",
     "453.14b02d4a.chunk.js.map": "/demo4-dirty-power/static/js/453.14b02d4a.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.477b6799.css",
-    "static/js/main.f547e220.js"
+    "static/css/main.e7a407ac.css",
+    "static/js/main.043b09cc.js"
   ]
 }
