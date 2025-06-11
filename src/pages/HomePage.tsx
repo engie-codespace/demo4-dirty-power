@@ -6,17 +6,17 @@ const HomePage: React.FC = () => {
   // Chatbot logic
   const [chatOpen, setChatOpen] = useState(false);
   const [messages, setMessages] = useState([
-    { from: 'bot', text: "Hello! I'm power Bot. How can I assist you today?" }
+    { from: 'bot', text: "Hello! I'm Pinklight Energy Bot. How can I assist you today?" }
   ]);
   const [input, setInput] = useState('');
   const chatEndRef = useRef<HTMLDivElement>(null);
 
   const responses: Record<string, string> = {
-    'energy types': 'We offer Natural Gas, Coal, and Nuclear energy. Which one would you like to know more about?',
-    'offers': 'We have Residential and Business offers. You can also compare them. Which one interests you?',
-    'customer support': 'Our dedicated team is available 24/7. How can we assist you?',
-    'company services': 'We provide Energy Supply, Energy Consultation, and Customer Support. What would you like to know more about?',
-    'key figures': 'We have over 25 years of experience, 500k+ satisfied customers, and a 98% satisfaction rate. How can we help you today?'
+    'energy types': 'Pinklight Energy offers Natural Gas, Coal, and Nuclear energy. Which one would you like to know more about?',
+    'offers': 'Pinklight Energy has Residential and Business offers. You can also compare them. Which one interests you?',
+    'customer support': 'Our dedicated Pinklight Energy team is available 24/7. How can we assist you?',
+    'company services': 'Pinklight Energy provides Energy Supply, Energy Consultation, and Customer Support. What would you like to know more about?',
+    'key figures': 'Pinklight Energy has over 25 years of experience, 500k+ satisfied customers, and a 98% satisfaction rate. How can we help you today?'
   };
 
   function getResponse(message: string) {
@@ -278,7 +278,7 @@ const HomePage: React.FC = () => {
         {chatOpen && (
           <div className="fixed bottom-24 right-6 z-50 w-80 bg-white rounded-xl shadow-2xl border border-pink-200 flex flex-col">
             <div className="bg-pink-500 text-white px-4 py-3 rounded-t-xl font-bold flex items-center justify-between">
-              <span>Chat with Power Bot</span>
+              <span>Chat with Pinklight Energy Bot</span>
               <button onClick={() => setChatOpen(false)} className="text-white hover:text-pink-200">&times;</button>
             </div>
             <div className="flex-1 p-4 overflow-y-auto max-h-64 space-y-2" style={{ minHeight: 200 }}>
