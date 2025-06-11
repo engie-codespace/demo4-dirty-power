@@ -1,8 +1,45 @@
-import React from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '../components/Hero';
 
 const HomePage: React.FC = () => {
+  // Chatbot logic
+  const [chatOpen, setChatOpen] = useState(false);
+  const [messages, setMessages] = useState([
+    { from: 'bot', text: "Hello! I'm power Bot. How can I assist you today?" }
+  ]);
+  const [input, setInput] = useState('');
+  const chatEndRef = useRef<HTMLDivElement>(null);
+
+  const responses: Record<string, string> = {
+    'energy types': 'We offer Natural Gas, Coal, and Nuclear energy. Which one would you like to know more about?',
+    'offers': 'We have Residential and Business offers. You can also compare them. Which one interests you?',
+    'customer support': 'Our dedicated team is available 24/7. How can we assist you?',
+    'company services': 'We provide Energy Supply, Energy Consultation, and Customer Support. What would you like to know more about?',
+    'key figures': 'We have over 25 years of experience, 500k+ satisfied customers, and a 98% satisfaction rate. How can we help you today?'
+  };
+
+  function getResponse(message: string) {
+    const lower = message.toLowerCase();
+    for (const key in responses) {
+      if (lower.includes(key)) return responses[key];
+    }
+    return "I'm sorry, I didn't understand that. Can you please rephrase?";
+  }
+
+  const handleSend = () => {
+    if (!input.trim()) return;
+    setMessages([...messages, { from: 'user', text: input }]);
+    setTimeout(() => {
+      setMessages(msgs => [...msgs, { from: 'bot', text: getResponse(input) }]);
+    }, 500);
+    setInput('');
+  };
+
+  useEffect(() => {
+    if (chatEndRef.current) chatEndRef.current.scrollIntoView({ behavior: 'smooth' });
+  }, [messages, chatOpen]);
+
   return (
     <div>
       <Hero />
@@ -164,117 +201,111 @@ const HomePage: React.FC = () => {
       </section>
       
       {/* Testimonials Section */}
-      <section className="py-16 bg-light">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-dark">What Our Customers Say</h2>
-            <p className="mt-4 text-lg text-gray-600 max-w-3xl mx-auto">
-              Discover testimonials from our satisfied customers
-            </p>
-          </div>
-          
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center mb-4">
-                <div className="h-12 w-12 rounded-full bg-gray-300 mr-4"></div>
-                <div>
-                  <h4 className="font-semibold">Mary Johnson</h4>
-                  <p className="text-sm text-gray-600">Residential customer since 2020</p>
-                </div>
-              </div>
-              <p className="text-gray-600 italic">
-                "The customer service is really excellent. I always get quick responses to my questions and the rates are very competitive."
-              </p>
-              <div className="mt-4 flex text-yellow-500">
-                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-              </div>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center mb-4">
-                <div className="h-12 w-12 rounded-full bg-gray-300 mr-4"></div>
-                <div>
-                  <h4 className="font-semibold">John Smith</h4>
-                  <p className="text-sm text-gray-600">SME Director, customer since 2018</p>
-                </div>
-              </div>
-              <p className="text-gray-600 italic">
-                "Thanks to personalized energy consultation, we've reduced our electricity bill by 15%. A reliable partner for our business."
-              </p>
-              <div className="mt-4 flex text-yellow-500">
-                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-              </div>
-            </div>
-            
-            <div className="bg-white p-6 rounded-lg shadow-md">
-              <div className="flex items-center mb-4">
-                <div className="h-12 w-12 rounded-full bg-gray-300 mr-4"></div>
-                <div>
-                  <h4 className="font-semibold">Sophia Williams</h4>
-                  <p className="text-sm text-gray-600">Residential customer since 2019</p>
-                </div>
-              </div>
-              <p className="text-gray-600 italic">
-                "The transition to DirtyPower was simple and hassle-free. The prices are transparent and I've never had any surprises on my bill."
-              </p>
-              <div className="mt-4 flex text-yellow-500">
-                <span>★</span><span>★</span><span>★</span><span>★</span><span>★</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-      
-      {/* Energy Supply Section */}
       <section className="py-16 bg-white/80">
-        <div className="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-10 items-center px-4">
-          {/* Left: Text */}
-          <div>
-            <h2 className="text-3xl font-bold text-primary mb-4 flex items-center">
-              <svg className="h-8 w-8 text-pink-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
-              Innovative Energy Supply
-            </h2>
-            <p className="text-lg text-gray-700 mb-6">
-              Experience the future of energy with our innovative supply services. We deliver clean, reliable, and affordable power from renewable sources, ensuring sustainability and efficiency for every customer.
-            </p>
-            <ul className="space-y-3">
-              <li className="flex items-center"><svg className="h-6 w-6 text-yellow-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v1m0 16v1m8.66-13.66l-.71.71M4.05 19.95l-.71.71M21 12h-1M4 12H3m16.66 5.66l-.71-.71M4.05 4.05l-.71-.71" /></svg> Solar Power</li>
-              <li className="flex items-center"><svg className="h-6 w-6 text-blue-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12a9 9 0 0118 0c0 4.97-4.03 9-9 9s-9-4.03-9-9z" /></svg> Wind Energy</li>
-              <li className="flex items-center"><svg className="h-6 w-6 text-cyan-400 mr-2" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 3v18m9-9H3" /></svg> Hydroelectric Power</li>
-            </ul>
-          </div>
-          {/* Right: Images/Icons */}
-          <div className="flex flex-col items-center space-y-6">
-            <img src="/images/solar-icon.png" alt="Solar" className="h-20 w-20 rounded-full shadow-lg bg-yellow-100 p-3" />
-            <img src="/images/wind-icon.png" alt="Wind" className="h-20 w-20 rounded-full shadow-lg bg-blue-100 p-3" />
-            <img src="/images/hydro-icon.png" alt="Hydro" className="h-20 w-20 rounded-full shadow-lg bg-cyan-100 p-3" />
+        <div className="max-w-4xl mx-auto px-4">
+          <h2 className="text-3xl font-bold text-primary text-center mb-10">What Our Customers Say</h2>
+          <div className="relative">
+            {/* Carousel container */}
+            <div className="flex overflow-x-auto no-scrollbar space-x-8 pb-4 snap-x snap-mandatory">
+              {/* Testimonial 1 */}
+              <div className="min-w-[320px] bg-white rounded-lg shadow p-6 flex flex-col items-center snap-center">
+                <img src="/images/customer1.jpg" alt="Customer 1" className="h-16 w-16 rounded-full mb-4 object-cover border-2 border-pink-300" />
+                <div className="flex mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.967c.3.921-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.197-1.54-1.118l1.287-3.967a1 1 0 00-.364-1.118L2.05 9.394c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.967z" /></svg>
+                  ))}
+                </div>
+                <p className="text-gray-700 text-center mb-4">“Switching to this company was the best decision for our family. The service is reliable and the savings are real!”</p>
+                <span className="font-semibold text-primary">Sarah L.</span>
+                <span className="text-xs text-gray-400">Residential Customer</span>
+              </div>
+              {/* Testimonial 2 */}
+              <div className="min-w-[320px] bg-white rounded-lg shadow p-6 flex flex-col items-center snap-center">
+                <img src="/images/customer2.jpg" alt="Customer 2" className="h-16 w-16 rounded-full mb-4 object-cover border-2 border-blue-300" />
+                <div className="flex mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.967c.3.921-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.197-1.54-1.118l1.287-3.967a1 1 0 00-.364-1.118L2.05 9.394c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.967z" /></svg>
+                  ))}
+                </div>
+                <p className="text-gray-700 text-center mb-4">“Our business energy costs dropped and the support team is always there when we need them. Highly recommended!”</p>
+                <span className="font-semibold text-primary">James T.</span>
+                <span className="text-xs text-gray-400">Business Customer</span>
+              </div>
+              {/* Testimonial 3 */}
+              <div className="min-w-[320px] bg-white rounded-lg shadow p-6 flex flex-col items-center snap-center">
+                <img src="/images/customer3.jpg" alt="Customer 3" className="h-16 w-16 rounded-full mb-4 object-cover border-2 border-green-300" />
+                <div className="flex mb-2">
+                  {[...Array(5)].map((_, i) => (
+                    <svg key={i} className="h-5 w-5 text-yellow-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.286 3.967a1 1 0 00.95.69h4.175c.969 0 1.371 1.24.588 1.81l-3.38 2.455a1 1 0 00-.364 1.118l1.287 3.967c.3.921-.755 1.688-1.54 1.118l-3.38-2.455a1 1 0 00-1.175 0l-3.38 2.455c-.784.57-1.838-.197-1.54-1.118l1.287-3.967a1 1 0 00-.364-1.118L2.05 9.394c-.783-.57-.38-1.81.588-1.81h4.175a1 1 0 00.95-.69l1.286-3.967z" /></svg>
+                  ))}
+                </div>
+                <p className="text-gray-700 text-center mb-4">“The transition to renewable energy was seamless. I appreciate the transparency and eco-friendly approach.”</p>
+                <span className="font-semibold text-primary">Priya S.</span>
+                <span className="text-xs text-gray-400">Eco-conscious Customer</span>
+              </div>
+            </div>
+            {/* Carousel navigation (optional, for accessibility) */}
+            <div className="flex justify-center mt-4 space-x-2">
+              <span className="h-2 w-2 bg-pink-400 rounded-full inline-block"></span>
+              <span className="h-2 w-2 bg-blue-300 rounded-full inline-block"></span>
+              <span className="h-2 w-2 bg-green-300 rounded-full inline-block"></span>
+            </div>
           </div>
         </div>
       </section>
-      
-      {/* Call to Action */}
-      <section className="py-16 bg-secondary text-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-3xl font-bold mb-4">Ready to switch energy suppliers?</h2>
-          <p className="text-lg mb-8 max-w-3xl mx-auto">
-            Join DirtyPower today and benefit from competitive rates and quality customer service.
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <Link 
-              to="/compare" 
-              className="bg-white text-secondary font-medium px-6 py-3 rounded-md hover:bg-gray-100 transition-colors"
-            >
-              Compare our offers
-            </Link>
-            <Link 
-              to="/contact" 
-              className="bg-accent text-white font-medium px-6 py-3 rounded-md hover:bg-yellow-500 transition-colors"
-            >
-              Contact us
-            </Link>
-          </div>
+
+      {/* Call to Action Section */}
+      <section className="py-16 bg-gradient-to-r from-pink-400 via-pink-500 to-pink-600 text-white text-center">
+        <div className="max-w-2xl mx-auto px-4">
+          <h2 className="text-3xl md:text-4xl font-extrabold mb-6">Ready to Switch to Cleaner, Smarter Energy?</h2>
+          <p className="text-lg mb-8">Join thousands of satisfied customers and make the move to reliable, sustainable power today.</p>
+          <a href="/offers" className="inline-flex items-center bg-white text-pink-600 font-bold px-8 py-4 rounded-full shadow-lg text-xl hover:bg-pink-100 transition">
+            Get Started
+            <svg className="ml-3 h-6 w-6 text-pink-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" /></svg>
+          </a>
         </div>
       </section>
+
+      {/* Chatbot Widget */}
+      <div>
+        <button
+          className="fixed bottom-6 right-6 z-50 bg-pink-500 hover:bg-pink-600 text-white rounded-full shadow-lg p-4 flex items-center focus:outline-none"
+          onClick={() => setChatOpen(v => !v)}
+          aria-label="Open chat bot"
+        >
+          <svg className="h-7 w-7" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8h2a2 2 0 012 2v8a2 2 0 01-2 2H5a2 2 0 01-2-2v-8a2 2 0 012-2h2m2-4h4a2 2 0 012 2v4H7V6a2 2 0 012-2z" /></svg>
+        </button>
+        {chatOpen && (
+          <div className="fixed bottom-24 right-6 z-50 w-80 bg-white rounded-xl shadow-2xl border border-pink-200 flex flex-col">
+            <div className="bg-pink-500 text-white px-4 py-3 rounded-t-xl font-bold flex items-center justify-between">
+              <span>Chat with Power Bot</span>
+              <button onClick={() => setChatOpen(false)} className="text-white hover:text-pink-200">&times;</button>
+            </div>
+            <div className="flex-1 p-4 overflow-y-auto max-h-64 space-y-2" style={{ minHeight: 200 }}>
+              {messages.map((msg, i) => (
+                <div key={i} className={`flex ${msg.from === 'user' ? 'justify-end' : 'justify-start'}`}>
+                  <div className={`px-3 py-2 rounded-lg text-sm ${msg.from === 'user' ? 'bg-pink-100 text-pink-700' : 'bg-pink-500 text-white'}`}>{msg.text}</div>
+                </div>
+              ))}
+              <div ref={chatEndRef}></div>
+            </div>
+            <div className="flex border-t border-pink-100">
+              <input
+                className="flex-1 px-3 py-2 rounded-bl-xl focus:outline-none"
+                type="text"
+                placeholder="Type your question..."
+                value={input}
+                onChange={e => setInput(e.target.value)}
+                onKeyDown={e => { if (e.key === 'Enter') handleSend(); }}
+              />
+              <button
+                className="px-4 py-2 bg-pink-500 text-white rounded-br-xl hover:bg-pink-600 font-bold"
+                onClick={handleSend}
+              >Send</button>
+            </div>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
